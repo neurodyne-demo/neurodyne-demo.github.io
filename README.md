@@ -1,1 +1,0 @@
-# neurodyne-demo.github.io
