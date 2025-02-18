@@ -112,10 +112,10 @@
               <a href="#home" class="list-select"><b>Home</b></a>
             </li>
             <li>
-              <a href="#neurodyne-key" class="list-select"><b>Global-key Shifting</b></a>
+              <a href="#neurodyne-key" class="list-select"><b>Global-key Manipulation</b></a>
             </li>
             <li>
-              <a href="#neurodyne-template" class="list-select"><b>Template-based Shifting</b></a>
+              <a href="#neurodyne-template" class="list-select"><b>Template-based Manipulation</b></a>
             </li>
             <li>
               <a href="#neurodyne-plugin" class="list-select"><b>Comparison with Plugins</b></a>
@@ -129,7 +129,7 @@
     <div class="p-5 md:p-0 mt-16 max-w-screen-xl mx-auto">
       <div class="p-6" id="home">
         <div class="mt-8 mb-8">
-          <h1>Neurodyne: Neural Pitch Shifting with Representation Learning <br> and Cycle-Consistency GAN</h1>
+          <h1>Neurodyne: Neural Pitch Manipulation with Representation Learning and Cycle-Consistency GAN</h1>
         </div>
 
         <!-- <div class="flex gap-2 justify-center flex-wrap">
@@ -144,23 +144,23 @@
         <div class="max-w-[900px] mx-auto mt-8 mb-16">
           <h2>Abstract</h2>
           <p class="text-p">
-            Pitch manipulation is the process of producers shifting the pitch of an audio segment to a specific key and
-            intonation, which is essential in music production. Neural-network-based pitch-shifting systems have been
-            popular in recent years due to their superior synthesis quality compared to the classical DSP ones. However,
-            their performance is still limited due to the inaccurately manually disentangled pitch-independent input
-            features and the lack of paired in- and out-of-tune training data. This work proposes Neurodyne to tackle
-            these issues and perform better. Specifically, Neurodyne uses adversarial representation learning to learn a
-            pitch-independent latent representation to avoid inaccurate feature engineering and cycle-consistency
+            Pitch manipulation is the process of producers manipulating the pitch of an audio segment to a specific key
+            and intonation, which is essential in music production. Neural-network-based pitch-manipulation systems have
+            been popular in recent years due to their superior synthesis quality compared to the classical DSP ones.
+            However, their performance is still limited due to the inaccurately manually disentangled pitch-independent
+            input features and the lack of paired in- and out-of-tune training data. This work proposes Neurodyne to
+            tackle these issues and perform better. Specifically, Neurodyne uses adversarial representation learning to
+            learn a pitch-independent latent representation to avoid manual disentanglement and cycle-consistency
             training to create paired data implicitly. Experiment results on both global-key and template-based pitch
-            shifting confirm the effectiveness of our system, marking a better synthesis quality while maintaining the
-            singer identity of the original audio.
+            manipulation confirm the effectiveness of our system, marking a better synthesis quality while maintaining
+            the singer identity of the original audio.
           </p>
         </div>
 
         <div class="mt-8 mb-8" id="gallery">
           <h4>What is Neurodyne?</h4>
           <div class="flex mx-auto justify-center max-w-screen-lg py-8">
-            <img src="static/model.png"></img>
+            <img src="static/model_final.png"></img>
           </div>
           <p>
             Neurodyne is a neural pitch-manipulation system that has high audio quality and pitch accuracy using
@@ -170,25 +170,27 @@
             disentanglement by learning a pitch-independent latent representation and creates paired in- and out-of-tune
             training data implicitly in the training proecss for better generalization. To illustrate the effectiveness
             of Neurodyne, we conduct evaluation in both global-key and template-based pitch
-            shifting scenarios.
+            manipulation scenarios.
           </p>
         </div>
 
         <div class="mt-8 mb-8" id="neurodyne-key">
-          <h4>Global-key Pitch Shifting</h4>
+          <h4>Global-key Pitch Manipulation</h4>
         </div>
 
         <div class="mt-8 mb-8">
           <p>
-            We conduct global-key pitch shifting to illustrate the robustness of our proposed system. In global-key
-            pitch-shifting, utterances will be globally shifted by a specific amount of semitones, including: -12, -6,
+            We conduct global-key pitch manipulation to illustrate the robustness of our proposed system. In global-key
+            pitch manipulation, utterances will be globally manipulated by a specific amount of semitones, including:
+            -12,
+            -6,
             -3, 0, 3, 6, 12.
           </p>
         </div>
 
         <div class="mt-8 mb-8">
           <p>
-            We select different baselines in global-key pitch shifting, including
+            We select different baselines in global-key pitch manipulation, including
             <a href="https://github.com/NVIDIA/BigVGAN">BigVGAN</a>,
             <a href="https://github.com/JeremyCCHsu/Python-Wrapper-for-World-Vocoder">World</a>,
             <a href="https://github.com/maxrmorrison/psola">TD-PSOLA</a>,
@@ -205,7 +207,7 @@
               <thead>
                 <tr>
                   <th style="text-align: center; width: 2%;">Style</th>
-                  <th style="text-align: center; width: 2%;">Key Shift</th>
+                  <th style="text-align: center; width: 2%;">Manipulated Keys</th>
                   <th style="text-align: center; width: 12%;">GT</th>
                   <th style="text-align: center; width: 12%;">
                     BigVGAN<br>
@@ -5886,7 +5888,7 @@
             </table>
             <div id="pagination">
               <span class="page-guide">
-                Different Styles and Shifted Semitones
+                Different Styles and Manipulated Semitones
               </span>
               <br>
               <br>
@@ -5934,12 +5936,13 @@
         </div>
 
         <div class="mt-8 mb-8" id="neurodyne-template">
-          <h4>Template-based Pitch Shifting</h4>
+          <h4>Template-based Pitch Manipulation</h4>
 
           <div class="mt-8 mb-8">
             <p>
-              We conduct template-based pitch-shifting to evaluate the effectiveness of our proposed model in real-world
-              scenarios. In template-based pitch-shifting, an out-of-tune audio segment will be adjusted based on an
+              We conduct template-based pitch manipulation to evaluate the effectiveness of our proposed model in
+              real-world
+              scenarios. In template-based pitch manipulation, an out-of-tune audio segment will be adjusted based on an
               in-tune reference.
               -3, 0, 3, 6, 12.
             </p>
@@ -5947,7 +5950,7 @@
 
           <div class="mt-8 mb-8">
             <p>
-              We select different baselines in template-based pitch shifting, including
+              We select different baselines in template-based pitch manipulation, including
               <a href="https://github.com/JeremyCCHsu/Python-Wrapper-for-World-Vocoder">World</a>,
               <a href="https://github.com/maxrmorrison/psola">TD-PSOLA</a>,
               <a href="https://github.com/haidog-yaqub/DiffPitcher">DiffPitcher</a>,
@@ -6168,7 +6171,7 @@
 
           <div class="mt-8 mb-8">
             <p>
-              We compare Neurodyne with SOTA commercial autotune softwares under template-based pitch shifting to
+              We compare Neurodyne with SOTA commercial autotune softwares under template-based pitch manipulation to
               further illustrate its effectivenss. All the out-of-tune samples are mannually manipulated by a music
               producer.
             </p>
