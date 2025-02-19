@@ -144,23 +144,23 @@
         <div class="max-w-[900px] mx-auto mt-8 mb-16">
           <h2>Abstract</h2>
           <p class="text-p">
-            Pitch manipulation is the process of producers manipulating the pitch of an audio segment to a specific key
-            and intonation, which is essential in music production. Neural-network-based pitch-manipulation systems have
+            Pitch manipulation is the process of producers adjusting the pitch of an audio segment to a specific key and
+            intonation, which is essential in music production. Neural-network-based pitch-manipulation systems have
             been popular in recent years due to their superior synthesis quality compared to the classical DSP ones.
             However, their performance is still limited due to the inaccurately manually disentangled pitch-independent
             input features and the lack of paired in- and out-of-tune training data. This work proposes Neurodyne to
-            tackle these issues and perform better. Specifically, Neurodyne uses adversarial representation learning to
-            learn a pitch-independent latent representation to avoid manual disentanglement and cycle-consistency
-            training to create paired data implicitly. Experiment results on both global-key and template-based pitch
-            manipulation confirm the effectiveness of our system, marking a better synthesis quality while maintaining
-            the singer identity of the original audio.
+            address these issues. Specifically, Neurodyne uses adversarial representation learning to learn a
+            pitch-independent latent representation to avoid manual disentanglement and cycle-consistency training to
+            create paired training data implicitly. Experimental results on global-key and template-based pitch
+            manipulation demonstrate the effectiveness of the proposed system, marking improved synthesis quality while
+            maintaining the original singer identity.
           </p>
         </div>
 
         <div class="mt-8 mb-8" id="gallery">
           <h4>What is Neurodyne?</h4>
           <div class="flex mx-auto justify-center max-w-screen-lg py-8">
-            <img src="static/model_final.png"></img>
+            <img src="static/model_demo.png"></img>
           </div>
           <p>
             Neurodyne is a neural pitch-manipulation system that has high audio quality and pitch accuracy using
@@ -5887,50 +5887,55 @@
               </tbody>
             </table>
             <div id="pagination">
-              <span class="page-guide">
-                Different Styles and Manipulated Semitones
-              </span>
-              <br>
-              <br>
-              <button onclick="showVCPage('global-pop--12')">Pop_-12</button>
-              <button onclick="showVCPage('global-pop--6')">Pop_-6</button>
-              <button onclick="showVCPage('global-pop--3')">Pop_-3</button>
-              <button onclick="showVCPage('global-pop-0')">Pop_0</button>
-              <button onclick="showVCPage('global-pop-3')">Pop_+3</button>
-              <button onclick="showVCPage('global-pop-6')">Pop_+6</button>
-              <button onclick="showVCPage('global-pop-12')">Pop_+12</button>
-              <br>
-              <button onclick="showVCPage('global-jazz--12')">Jazz_-12</button>
-              <button onclick="showVCPage('global-jazz--6')">Jazz_-6</button>
-              <button onclick="showVCPage('global-jazz--3')">Jazz_-3</button>
-              <button onclick="showVCPage('global-jazz-0')">Jazz_0</button>
-              <button onclick="showVCPage('global-jazz-3')">Jazz_+3</button>
-              <button onclick="showVCPage('global-jazz-6')">Jazz_+6</button>
-              <button onclick="showVCPage('global-jazz-12')">Jazz_+12</button>
-              <br>
-              <button onclick="showVCPage('global-folk--12')">Folk_-12</button>
-              <button onclick="showVCPage('global-folk--6')">Folk_-6</button>
-              <button onclick="showVCPage('global-folk--3')">Folk_-3</button>
-              <button onclick="showVCPage('global-folk-0')">Folk_0</button>
-              <button onclick="showVCPage('global-folk-3')">Folk_+3</button>
-              <button onclick="showVCPage('global-folk-6')">Folk_+6</button>
-              <button onclick="showVCPage('global-folk-12')">Folk_+12</button>
-              <br>
-              <button onclick="showVCPage('global-opera--12')">Opera_-12</button>
-              <button onclick="showVCPage('global-opera--6')">Opera_-6</button>
-              <button onclick="showVCPage('global-opera--3')">Opera_-3</button>
-              <button onclick="showVCPage('global-opera-0')">Opera_0</button>
-              <button onclick="showVCPage('global-opera-3')">Opera_+3</button>
-              <button onclick="showVCPage('global-opera-6')">Opera_+6</button>
-              <button onclick="showVCPage('global-opera-12')">Opera_+12</button>
-              <br>
-              <button onclick="showVCPage('global-children--12')">Children_-12</button>
-              <button onclick="showVCPage('global-children--6')">Children_-6</button>
-              <button onclick="showVCPage('global-children--3')">Children_-3</button>
-              <button onclick="showVCPage('global-children-0')">Children_0</button>
-              <button onclick="showVCPage('global-children-3')">Children_+3</button>
-              <button onclick="showVCPage('global-children-6')">Children_+6</button>
-              <button onclick="showVCPage('global-children-12')">Children_+12</button>
+              <span class="page-guide">Different Styles and Manipulated Semitones</span>
+              <br><br>
+
+              <div id="styleContainer" style="display: inline-block; vertical-align: top; margin-right: 20px;">
+              </div>
+
+              <div id="shiftContainer" style="display: inline-block; vertical-align: top;">
+              </div>
+
+              <script>
+                const styles = ["Pop", "Jazz", "Folk", "Opera", "Children"];
+                const shiftKeys = [-12, -6, -3, 0, 3, 6, 12];
+
+                let selectedStyle = null;
+                let selectedShift = null;
+
+                const styleContainer = document.getElementById("styleContainer");
+                styles.forEach(style => {
+                  const button = document.createElement("button");
+                  button.textContent = style;
+                  button.onclick = () => {
+                    selectedStyle = style.toLowerCase();
+                    checkAndNavigate();
+                  };
+                  styleContainer.appendChild(button);
+                });
+
+                const shiftContainer = document.getElementById("shiftContainer");
+                shiftKeys.forEach(shiftKey => {
+                  const button = document.createElement("button");
+                  button.textContent = shiftKey;
+                  button.onclick = () => {
+                    selectedShift = shiftKey;
+                    checkAndNavigate();
+                  };
+                  shiftContainer.appendChild(button);
+                });
+
+                function checkAndNavigate() {
+                  if (selectedStyle !== null && selectedShift !== null) {
+                    const page = `global-${selectedStyle}-${selectedShift}`;
+                    showVCPage(page);
+                  }
+                }
+
+                function showVCPage(page) {
+                  console.log("Navigating to:", page);
+                }
+              </script>
             </div>
           </div>
         </div>
@@ -5944,7 +5949,6 @@
               real-world
               scenarios. In template-based pitch manipulation, an out-of-tune audio segment will be adjusted based on an
               in-tune reference.
-              -3, 0, 3, 6, 12.
             </p>
           </div>
 
